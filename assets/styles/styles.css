@@ -142,3 +142,12 @@ body {
   background-color: #bb9981;
   box-shadow: white;
 }
+
+@media screen and (max-width: 768px) {
+  .main {
+    margin: 0;
+  }
+  .content-section {
+    margin: 2rem 0.75rem;
+  }
+}
