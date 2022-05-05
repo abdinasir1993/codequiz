@@ -40,12 +40,30 @@
       </nav>
     </header>
 
-    <main class="main">
-      <section class="content-section">
-        <h1 class="content-selection-title">How Smart Are You!</h1>
+    <main class="main" id="main">
+      <section class="content-section" id="banner">
+        <h1 class="content-selection-title">General Knowledge Quiz!</h1>
         <h2 class="content-selection-info">Test Yourself</h2>
         <div class="btn-control">
           <button class="btn" id="start-btn">start</button>
+        </div>
+      </section>
+      <section
+        class="content-section question-container"
+        name="question"
+        data-question-index="1"
+      >
+        <h2 class="content-section-title">
+          what is the Capital city of france?
+        </h2>
+        <ul class="feed-back-list">
+          <li class="list-item" data-value="london">london</li>
+          <li class="list-item" data-value="brussels">brussels</li>
+          <li class="list-item" data-value="berlin">berlin</li>
+          <li class="list-item" data-value="amsterdam">amsterdam</li>
+        </ul>
+        <div class="button-control">
+          <button class="btn" id="next-btn">Next</button>
         </div>
       </section>
     </main>

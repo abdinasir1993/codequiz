@@ -109,6 +109,7 @@ body {
   position: relative;
   color: white;
   box-shadow: 0rem 0rem 0.7rem 0.7rem #bb9981;
+  background-image: ();
 }
 
 .content-section-title {
@@ -142,12 +143,41 @@ body {
   background-color: #bb9981;
   box-shadow: white;
 }
+.questionaire-container {
+  padding: 0;
+  background: transparent;
+ 
+}
+
+.questionaire-container .content-section-title {
+  background-color: #bb9981;
+}
+
+.feed-back-list {
+  list-style: none;
+  text-align: left;
+  margin: 3rem 2rem;
+  padding: 2rem;
+  border-radius: 0.4rem;
+  background-color: #bb9981;
+}
+
+.list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding:1rem 0;
+    font size:1.8rem;
+}
+.list-item:hover{
+    background-color: #534340;
+}
 
 @media screen and (max-width: 768px) {
   .main {
     margin: 0;
   }
-  .content-section {
+  .content-selection {
     margin: 2rem 0.75rem;
   }
 }
