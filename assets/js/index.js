@@ -23,10 +23,10 @@ const questions = [
     options,
 
 },
-// {
-//     text: "2. The longest river in the world is the amazon river? ",
-//     options,
-// },
+{
+    text: " The longest river in the world is the amazon river?", options,
+          
+},
 {
     text: "The mosquito has a record for killing people in the world than any other species in in written history?",
     options,},
@@ -44,7 +44,7 @@ const questions = [
         text: "Fish cannot blink?",
         options,},
 
-   { text: "7. the knight is the only only piece in chess which can only move diagonally?",
+   { text: " the knight is the only only piece in chess which can only move diagonally?",
     options,}
 
 
@@ -72,8 +72,12 @@ const handleOptionClick = (event) => {
        
        console.log(answer);
 
+       removeQuestion();
+
        if (questionIndex < questions.length - 1) {
            questionIndex += 1;
+
+           //remove qestion 
            renderQuestion()
 
        } else { renderResults ()
@@ -129,7 +133,8 @@ const renderQuestion = () => {
     console.log("render question");
     //create section
     const section = document.createElement ("section")
-    section.setAttribute("class", "content-section question-container");
+    section.setAttribute("class", "content-section ");
+    section.setAttribute("id", "question-container" );
     
    // get questions
 
@@ -205,7 +210,27 @@ bannerSection.remove();
    
 };
 
+const initialiseLocalStorage = () => {
+
+// get freedback results from local storage
+
+const feedbackResultsFormsLs = JSON.parse(localStorage.item("feedbackResults"));
+
+if (!feedbackResultsFormsLs)
+//if not exist set ls to have feedback results as an empty arrat
+
+localStorage.setItem("feedbackResults"JSON.stringify([]));
+
+
+console.log(feedbackResultsFormsLs);
+
+// if it already exists then do nothing
+
+// else set ls to have feedbackResults
+
 //declare the event handler function for start button click
+
+}
 const handleStartButtonClick = () => {
 
     console.log("start button clicked");
@@ -215,5 +240,11 @@ removeBanner();
 renderQuestion();
 
 }
+
+const removeQuestion = () => {
+    document.getElementById("question-container").remove();
+}
 // add event listener to start button
 startButton.addEventListener("click", handleStartButtonClick);
+
+
