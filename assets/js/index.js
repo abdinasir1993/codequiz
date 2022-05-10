@@ -64,11 +64,14 @@ const handleOptionClick = (event) => {
    if (target.tagName === "LI"){
        const value = target.getAttribute("data-value");
        console.log (value);
+       
        const question = questions[questionIndex]. text;
        const answer = {
            question,
            value,
        };
+
+    //    storeAnswerInIs(answer);
        
        console.log(answer);
 
@@ -125,6 +128,41 @@ const renderResults = () => {
 
 //function to render form
 const renderForm = () => {
+    console.log("render form")
+    const section = document.createElement("section")
+    section.setAttribute("class", "feedback-form-section")
+    section.setAttribute("name", "feedback-form")
+    const h2 = document.createElement("h2")
+    h2.setAttribute("class", "title")
+    h2.textContent="submit your feedback"
+    const form = document.createElement("form");
+
+    const inputDiv = document.createElement("div");
+    inputDiv.setAttribute("class", "form-control");
+    
+   
+    const inPut = document.createElement("input");
+    inputDiv.setAttribute("class", "full-name",);
+    inputDiv.setAttribute("name", "form-input",);
+    inputDiv.setAttribute("type", "text",);
+    inputDiv.setAttribute("placeholder", "enter full name",);
+    
+    inputDiv.append(input);
+
+    const buttonDiv = document.createElement("div");
+    buttonDiv.setAttribute("class", "form-control");
+
+    
+
+    const button = document.createElement("button");
+    button.setAttribute("type", "submit");
+    button.setAttribute("class", "btn")
+    button.textContent= "sumbmit"
+
+    buttonDiv.append(button);
+    form.append(input, buttonDiv);
+    section.append(h2, form);
+    mainElement.append(section);
 
 }
 
@@ -219,7 +257,7 @@ const feedbackResultsFormsLs = JSON.parse(localStorage.item("feedbackResults"));
 if (!feedbackResultsFormsLs)
 //if not exist set ls to have feedback results as an empty arrat
 
-localStorage.setItem("feedbackResults"JSON.stringify([]));
+localStorage.setItem("feedbackResults", JSON.stringify([]));
 
 
 console.log(feedbackResultsFormsLs);
@@ -232,6 +270,21 @@ console.log(feedbackResultsFormsLs);
 
 }
 const handleStartButtonClick = () => {
+
+
+const storeAnswerInls = (answer) => {
+    // ged feedback results from local storage
+   
+    const feedbackResults = JSON.parse(localStorage.getItem(
+       "getfeedbackResults") );
+
+    //push answer in to array
+    feedbackResults.push(answer);
+
+    // set feedbackResults in ls
+    localStorage.setItem("feedbackResults", JSON.stringify(feedbackResults));
+};
+
 
     console.log("start button clicked");
 
