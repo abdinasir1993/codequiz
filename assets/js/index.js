@@ -12,6 +12,10 @@ const mainElement = document.getElementById("main");
 
 let questionIndex = 0;
 
+//current score index
+let scoreIndex = 0;
+
+
 //all options for questions
 const options = ["true", "false"];
 
@@ -21,31 +25,43 @@ const questions = [
 {
     text: "Paris is the capital city of France?",
     options,
+    answer: "true",
 
 },
 {
-    text: " The longest river in the world is the amazon river?", options,
+    text: " The longest river in the world is the amazon river?",
+     options,
+     answer: "true",
+
           
 },
 {
     text: "The mosquito has a record for killing people in the world than any other species in in written history?",
-    options,},
+    options,
+    answer: "true",
+},
 
 {
     text: "The capital of australia is sydney?",
     options,
+    answer: "true",
 
 },
 
    { text: "Algeria is located in the african continent?",
     options,
+    answer: "true",
    },
     {
         text: "Fish cannot blink?",
-        options,},
+        options,
+        answer: "true",
+    },
 
    { text: " the knight is the only only piece in chess which can only move diagonally?",
-    options,}
+    options,
+    answer: "true",
+}
 
 
     ]
@@ -70,7 +86,15 @@ const handleOptionClick = (event) => {
            question,
            value,
        };
-
+       const correctValue = questions[questionIndex].answer;
+       console.log("correct is :" + correctValue);
+   
+       if (value == correctValue) {
+         scoreIndex += 1;
+         console.log("current score" + scoreIndex);
+       }else {
+           alert("incorrect answer")
+       }
     //    storeAnswerInIs(answer);
        
        console.log(answer);
@@ -83,7 +107,8 @@ const handleOptionClick = (event) => {
            //remove qestion 
            renderQuestion()
 
-       } else { renderResults ()
+       } else {
+            renderResults ()
                 renderForm ()
 
        }
@@ -123,14 +148,28 @@ const handleOptionClick = (event) => {
 
 // function to render results 
 const renderResults = () => {
-
+//create section
+const section = document.createElement("section");
+section.setAttribute("class", "content-section");
+section.setAttribute("id", "results-container");
+// create h1
+const title = document.createElement("h2");
+title.setAttribute("class", "content-section-title");
+title.textContent = "results";
+//create scoreboard
+const h2 = document.createElement("h2");
+h2.setAttribute("class", "content-section-info");
+h2.textContent = "your score was: " + scoreIndex + "/" + questions.length;
+//create timer results
+section.append(title, h2,);
+main.append(section);
 }
 
 //function to render form
 const renderForm = () => {
     console.log("render form")
     const section = document.createElement("section")
-    section.setAttribute("class", "feedback-form-section")
+    section.setAttribute("class", "content-section feedback-form-section")
     section.setAttribute("name", "feedback-form")
     const h2 = document.createElement("h2")
     h2.setAttribute("class", "title")
@@ -141,11 +180,11 @@ const renderForm = () => {
     inputDiv.setAttribute("class", "form-control");
     
    
-    const inPut = document.createElement("input");
-    inputDiv.setAttribute("class", "full-name",);
-    inputDiv.setAttribute("name", "form-input",);
-    inputDiv.setAttribute("type", "text",);
-    inputDiv.setAttribute("placeholder", "enter full name",);
+    const input = document.createElement("input");
+    input.setAttribute("class", "full-name",);
+    input.setAttribute("name", "form-input",);
+    input.setAttribute("type", "text",);
+    input.setAttribute("placeholder", "enter full name",);
     
     inputDiv.append(input);
 
@@ -157,10 +196,10 @@ const renderForm = () => {
     const button = document.createElement("button");
     button.setAttribute("type", "submit");
     button.setAttribute("class", "btn")
-    button.textContent= "sumbmit"
+    button.textContent= "submit"
 
     buttonDiv.append(button);
-    form.append(input, buttonDiv);
+    form.append(inputDiv, buttonDiv);
     section.append(h2, form);
     mainElement.append(section);
 
@@ -284,7 +323,6 @@ const storeAnswerInls = (answer) => {
     // set feedbackResults in ls
     localStorage.setItem("feedbackResults", JSON.stringify(feedbackResults));
 };
-
 
     console.log("start button clicked");
 
