@@ -146,13 +146,27 @@ body {
 .questionaire-container {
   padding: 0;
   background: transparent;
- 
 }
 
 .questionaire-container .content-section-title {
   background-color: #bb9981;
 }
-
+/* start of timer section */
+.timer-section {
+  letter-spacing: 0.6rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  margin: auto;
+  color: white;
+  box-shadow: 0rem 0rem 0.7rem 0.7rem #bb9981;
+  border-radius: 10%;
+}
+.timer {
+  width: fit-content;
+}
+/* end of timer section */
 .feed-back-list {
   list-style: none;
   text-align: left;
@@ -163,18 +177,17 @@ body {
 }
 
 .list-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding:1rem 0;
-    font size:1.8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1rem 0;
+  font-size: 1.8rem;
 }
-.list-item:hover{
-    background-color: #534340;
+.list-item:hover {
+  background-color: #534340;
+  cursor: pointer;
 }
 /*start of form section styles*/
-
-
 
 /*end of form section styles*/
 

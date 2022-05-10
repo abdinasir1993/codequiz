@@ -8,6 +8,8 @@ const bannerSection = document.getElementById("banner");
 
 const mainElement = document.getElementById("main");
 
+const timerSpan = document.getElementById("time-span");
+
 // current question index
 
 let questionIndex = 0;
@@ -15,6 +17,8 @@ let questionIndex = 0;
 //current score index
 let scoreIndex = 0;
 
+//define time for quiz
+let timer = 30;
 
 //all options for questions
 const options = ["true", "false"];
@@ -31,12 +35,12 @@ const questions = [
 {
     text: " The longest river in the world is the amazon river?",
      options,
-     answer: "true",
+     answer: "false",
 
           
 },
 {
-    text: "The mosquito has a record for killing people in the world than any other species in in written history?",
+    text: "The mosquito has a record for killing more people in the world than any other species in written history?",
     options,
     answer: "true",
 },
@@ -44,7 +48,7 @@ const questions = [
 {
     text: "The capital of australia is sydney?",
     options,
-    answer: "true",
+    answer: "false",
 
 },
 
@@ -60,7 +64,13 @@ const questions = [
 
    { text: " the knight is the only only piece in chess which can only move diagonally?",
     options,
-    answer: "true",
+    answer: "false",
+},
+
+{
+    text: "whales are mammals",
+    options,
+    answer:"true",
 }
 
 
@@ -90,10 +100,16 @@ const handleOptionClick = (event) => {
        console.log("correct is :" + correctValue);
    
        if (value == correctValue) {
-         scoreIndex += 1;
-         console.log("current score" + scoreIndex);
-       }else {
-           alert("incorrect answer")
+        //add to score by 1
+        scoreIndex += 1;
+        console.log("current score" + scoreIndex);
+        // add 5 seconds from timer
+        timer += 2;
+      } else {
+        //alert incorrect answer
+        alert("incorrect answer");
+        //remove 5 seconds from timer
+        timer -= 5;
        }
     //    storeAnswerInIs(answer);
        
@@ -110,6 +126,7 @@ const handleOptionClick = (event) => {
        } else {
             renderResults ()
                 renderForm ()
+                removeTimerSection();
 
        }
 
@@ -161,7 +178,10 @@ const h2 = document.createElement("h2");
 h2.setAttribute("class", "content-section-info");
 h2.textContent = "your score was: " + scoreIndex + "/" + questions.length;
 //create timer results
-section.append(title, h2,);
+const finalTimer = document.createElement("h2");
+finalTimer.setAttribute("class", "content-section-info");
+finalTimer.textContent = "time remaining: " + timer + " seconds";
+section.append(title, h2, finalTimer);
 main.append(section);
 }
 
@@ -278,7 +298,36 @@ const renderQuestion = () => {
 
     
 }
-
+// function to render timer
+const renderTimerSection = () => {
+    console.log("render-timer");
+    // use HTML as guide and build in JS
+    const timerSection = document.createElement("section");
+    timerSection.setAttribute("class", "timer-section");
+    timerSection.setAttribute("id", "timer");
+    const timeRemaining = document.createElement("div");
+    timeRemaining.setAttribute("class", "timer");
+    const timeSpan = document.createElement("span");
+    timeSpan.setAttribute("id", "time-span");
+    timeSpan.setAttribute("class", "time-span-class");
+  
+    //append span to time remaining then time remaining to section
+    timeRemaining.appendChild(timeSpan);
+    timerSection.append(timeRemaining);
+    main.append(timerSection);
+  
+    // function for timer countdown
+    const timerCountdownUpdate = () => {
+      //reduce time
+      timer -= 1;
+      timeSpan.textContent = `Time Remaining: ${timer}`;
+      if (timer === 0) {
+        clearInterval(timerId);
+      }
+    };
+    const timerId = setInterval(timerCountdownUpdate, 1000);
+  };
+  
 //remove banner section
 const removeBanner = () => {
     console.log ("remove banner");
@@ -286,6 +335,11 @@ const removeBanner = () => {
 bannerSection.remove();
    
 };
+// function to remover timer section
+const removeTimerSection = () => {
+    console.log("remove question");
+    document.getElementById("timer").remove();
+  };
 
 const initialiseLocalStorage = () => {
 
@@ -326,7 +380,7 @@ const storeAnswerInls = (answer) => {
 
     console.log("start button clicked");
 
-
+renderTimerSection();
 removeBanner();
 renderQuestion();
 
